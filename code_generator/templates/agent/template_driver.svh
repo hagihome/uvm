@@ -27,19 +27,18 @@ class <uvc_name>_driver extends uvm_driver#(<uvc_name>_seq_item);
   endfunction:reset_if
 
   virtual task run_phase(uvm_phase phase);
-    <uvc_name>_seq_item item;
-
     reset_if();
     forever begin
-      seq_item_port.try_next_item(item);
-      if(item==null) begin
+      seq_item_port.try_next_item(req);
+      if(req==null) begin
         reset_if();
-        seq_item_port.get_next_item(item);
+        seq_item_port.get_next_item(req);
       end
+      asset($cast(rsp,req));
       // TODO:
 
       // ----
-      seq_item_port.item_done();
+      seq_item_port.item_done(rsp);
     end
   endtask
 
