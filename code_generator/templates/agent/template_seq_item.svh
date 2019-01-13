@@ -6,6 +6,8 @@ class <uvc_name>_seq_item extends uvm_sequence_item;
   // constraints
 
   // UVM default
+  `uvm_object_utils(<uvc_name>_seq_item)
+
   function new(string name="<uvc_name>_seq_item");
     super.new(name);
   endfunction:new
